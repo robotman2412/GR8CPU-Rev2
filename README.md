@@ -5,11 +5,11 @@ Current Status:
 
 Modules:
 
-#001 Register V1: Success, need to test write logic.
+#001 Register V1: Success.
 
 #002 Bus V1: Failure, wrong connectors.
 
-#003 Program counter V1: Design stage.
+#003 Program counter V1: PCB Design stage, breadboard success.
 
 #004 Motherboard V2 (Former Bus): Ready to order.
 
@@ -18,8 +18,4 @@ Modules:
 
 ICs to order:
 
-SN74HC02N - NOR gate IC
-
-SN74HC00N - NOT gate IC
-
-SN74HC04N - NAND gate IC
+None.
