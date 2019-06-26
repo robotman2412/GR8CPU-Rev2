@@ -14,8 +14,6 @@ The assembler creates a folder called "data", which stores the paths.
 
 It is recommended you keep this, but not necessary.
 
-Note: i must still make assembler.md
-
 Note: I must still make a full guide on instruction sets later.
 
 ---
