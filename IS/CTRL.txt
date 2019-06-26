@@ -1,0 +1,32 @@
+AIA ALU: invert A
+AIB ALU: invert B
+AIO ALU: invert out / shift right
+ACR ALU: carry in
+OPTN0 OPTN: option bit 0
+ALO ALU: enable out
+RIA A: in
+RIB B: in
+RIC C: in
+RID C: in
+ROA A: out
+ROB B: out
+ROC C: out
+ROD D: out
+FRI FLAG: in (from ALU)
+-
+OPTN2 OPTN: option bit 2
+ISA RAM: set adress
+ILD RAM: load
+IST RAM: store
+CIN PC: increment
+COB PC: out
+HLT CPU: stop further execution
+JMP PC: in
+JBC PC: in if branch condition XOR OPTN2
+STR CU: finish instruction
+-
+ADC ALU: disable internal carry
+ADA ALU: disable AND gates (XOR -> OR) / rotate instead of shift
+OPTN1 OPTN: option bit 1
+-
+-
