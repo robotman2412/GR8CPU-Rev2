@@ -1,0 +1,3 @@
+D:\logisim projects\GR8CPU Rev2.1\IS\CTRL.txt
+D:\logisim projects\GR8CPU Rev2.1\IS\ASMGV2.txt
+D:\logisim projects\GR8CPU Rev2.1\IS\IS_ROM
