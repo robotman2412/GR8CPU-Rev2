@@ -10,7 +10,13 @@ The program i used to generate the instruction set ROMs is in the folder "ISGEN"
 
 Take a look at "CTRL" and "ASMGV2" for an example on how to generate an instruction set.
 
-Note: I must still make a full guide later.
+The assembler creates a folder called "data", which stores the paths.
+
+It is recommended you keep this, but not necessary.
+
+Note: i must still make assembler.md
+
+Note: I must still make a full guide on instruction sets later.
 
 ---
 
