@@ -1,0 +1,18 @@
+$00         printx                                
+$00 - $01                 load    $00             01 00 
+$02         printx_msg    =       printx + 1      
+$02 - $03                 comp    # $00           10 00 
+$04 - $05   printx_jmp    jump    $00 , A = B     12 00 
+$06         printx_ret    =       printx_jmp + 1  
+$06 - $06                 copy    A to D          04 
+$07 - $08                 inc     printx_msg      23 01 
+$09 - $0a                 jump    printx          11 00 
+
+Labels:
+
+printx_msg $01
+printx_ret $05
+printx_jmp $04
+printx     $00
+
+Program length: 11 / 256 bytes (4.296875% of maximum size)

@@ -1,0 +1,21 @@
+Bun pinout:
+1 5V
+2 GND
+3 inverse reset
+4-10 unused
+11 reset
+12 clock
+13-20 8-bit bus
+
+Modules:
+#001 Register V1:					Success, need to test write logic.
+#002 Bus V1:						Failure, wrong connectors.
+#003 Program counter V1:			Design stage.
+#004 Motherboard V2 (Former Bus):	Ready to order.
+#005 Flag register V1:				Design stage.
+
+ICs to order:
+SN74HC02N - NOR gate IC
+SN74HC00N - NAND gate IC
+SN74HC04N - NOT gate IC
+SN74HC86  - XOR gate IC

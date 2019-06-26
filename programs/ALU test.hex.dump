@@ -1,0 +1,13 @@
+$00         *      =      $00        
+$00 - $01          rot    R , mem    2d 05 
+$02 - $03          rot    L , mem    2c 05 
+$04 - $04          halt              3f 
+$05 - $05   mem    byte   %00010001  11 
+$06 - $06          byte   %10001000  88 
+$07 - $07          byte   %00010001  11 
+
+Labels:
+
+mem $05
+
+Program length: 8 / 256 bytes (3.125% of maximum size)

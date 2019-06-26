@@ -1,0 +1,118 @@
+$00         *            =       $00                    
+$00 - $01                load    # message0             02 42 
+$02 - $03                store   printx_msg             22 65 
+$04 - $05                load    # start                02 0a 
+$06 - $07                store   printx_ret             22 69 
+$08 - $09                jump    printx                 11 64 
+$0a - $0b   start        load    # $00                  02 00 
+$0c - $0d                store   numx                   22 3f 
+$0e - $0f                store   numy                   22 40 
+$10 - $11                load    # $01                  02 01 
+$12 - $13                store   numz                   22 41 
+$14 - $14   fibs         copy    A to C                 03 
+$15 - $16                load    numy                   01 40 
+$17 - $18                store   numx                   22 3f 
+$19 - $1a                load    numz                   01 41 
+$1b - $1c                store   numy                   22 40 
+$1d - $1e                load    numx                   01 3f 
+$1f - $20                add     numy                   07 40 
+$21 - $22                store   numz                   22 41 
+$23 - $24                jump    start , carry          18 0a 
+$25 - $26                store   number                 22 70 
+$27 - $28                load    # btd                  02 73 
+$29 - $2a                store   printx_ret             22 69 
+$2b - $2c                load    # message1             02 53 
+$2d - $2e                store   printx_msg             22 65 
+$2f - $30                load    # fibs_msg1            02 35 
+$31 - $32                store   btd_ret                22 af 
+$33 - $34                jump    printx                 11 64 
+$35 - $36   fibs_msg1    load    # fibs                 02 14 
+$37 - $38                store   printx_ret             22 69 
+$39 - $3a                load    # message2             02 62 
+$3b - $3c                store   printx_msg             22 65 
+$3d - $3e                jump    printx                 11 64 
+$3f - $3f   numx         byte    $00                    00 
+$40 - $40   numy         byte    $00                    00 
+$41 - $41   numz         byte    $00                    00 
+$42 - $52   message0     data    "Fibonachi, yay!\n\0"  46 69 62 6f 6e 61 63 68 69 2c 20 79 61 79 21 0a 00 
+$53 - $61   message1     data    "The number is \0"     54 68 65 20 6e 75 6d 62 65 72 20 69 73 20 00 
+$62 - $63   message2     data    "\n\0"                 0a 00 
+$64         printx                                      
+$64         printx_msg   =       printx + 1             
+$64 - $65                load    $00                    01 00 
+$66 - $67                comp    # $00                  10 00 
+$68 - $69   printx_jmp   jump    $00 , A = B            12 00 
+$6a         printx_ret   =       printx_jmp + 1         
+$6a - $6a                copy    A to D                 04 
+$6b - $6c                inc     printx_msg             23 65 
+$6d - $6e                jump    printx                 11 64 
+$6f - $6f   asc_start    data    $30                    30 
+$70 - $70   number       data    $00                    00 
+$71 - $71   hundreds     data    $00                    00 
+$72 - $72   tens         data    $00                    00 
+$73         btd                                         
+$73 - $74                load    # $00                  02 00 
+$75 - $76                store   hundreds               22 71 
+$77 - $78                store   tens                   22 72 
+$79         btd_loop                                    
+$79 - $7a                load    number                 01 70 
+$7b - $7c                comp    # 100                  10 64 
+$7d - $7e                jump    btd_loop1 , A < B      16 87 
+$7f - $80                sub     # 100                  0d 64 
+$81 - $82                store   number                 22 70 
+$83 - $84                inc     hundreds               23 71 
+$85 - $86                jump    btd_loop               11 79 
+$87         btd_loop1                                   
+$87 - $88                comp    # 10                   10 0a 
+$89 - $8a                jump    btd_end , A < B        16 93 
+$8b - $8c                sub     # 10                   0d 0a 
+$8d - $8e                store   number                 22 70 
+$8f - $90                inc     tens                   23 72 
+$91 - $92                jump    btd_loop               11 79 
+$93         btd_end                                     
+$93 - $94                load    hundreds               01 71 
+$95 - $96                comp    # $01                  10 01 
+$97 - $98                jump    btd_end1 , A < B       16 9e 
+$99 - $9a                add     asc_start              07 6f 
+$9b - $9b                copy    A to D                 04 
+$9c - $9d                jump    btd_end2               11 a4 
+$9e - $9f   btd_end1     load    tens                   01 72 
+$a0 - $a1                comp    # $01                  10 01 
+$a2 - $a3                jump    btd_end3 , A < B       16 a9 
+$a4 - $a5   btd_end2     load    tens                   01 72 
+$a6 - $a7                add     asc_start              07 6f 
+$a8 - $a8                copy    A to D                 04 
+$a9 - $aa   btd_end3     load    asc_start              01 6f 
+$ab - $ac                add     number                 07 70 
+$ad - $ad                copy    A to D                 04 
+$ae - $af   btd_jmp      jump    $00                    11 00 
+$b0         btd_ret      =       btd_jmp + 1            
+
+Labels:
+
+numy       $40
+tens       $72
+numx       $3f
+numz       $41
+btd_loop1  $87
+printx_ret $69
+btd_end2   $a4
+asc_start  $6f
+number     $70
+btd_end3   $a9
+btd        $73
+btd_end1   $9e
+hundreds   $71
+btd_jmp    $ae
+printx_jmp $68
+start      $0a
+btd_loop   $79
+btd_end    $93
+printx_msg $65
+fibs_msg1  $35
+btd_ret    $af
+fibs       $14
+message0   $42
+printx     $64
+message2   $62
+message1   $53
