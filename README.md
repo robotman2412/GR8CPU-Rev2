@@ -5,6 +5,14 @@ The instruction set ROMs are in the folder "IS"
 
 The programs along with the exported files are in the folder "programs"
 
+The program i used to generate the instruction set ROMs is in the folder "ISGEN"
+
+Take a look at "CTRL" and "ASMGV2" for an example on how to generate an instruction set.
+
+Note: I must still make a full guide later.
+
+---
+
 Current Status:
 
 Modules:
@@ -19,6 +27,7 @@ Modules:
 
 #005 Flag register V1: Design stage.
 
+---
 
 ICs to order:
 
