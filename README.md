@@ -1,6 +1,10 @@
 # GR8CPU-Rev2
 My second CPU project, orderable as a kit!
 
+The instruction set ROMs are in the folder "IS"
+
+The programs along with the exported files are in the folder "programs"
+
 Current Status:
 
 Modules:
