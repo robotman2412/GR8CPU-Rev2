@@ -1,53 +1,53 @@
 
 Instructions:
 
-FORMAT			HEX		NAME	ARG		DESC
+FORMAT			HEX	NAME	ARG	DESC
 
-NOP					00		NOP		-		-
-LOAD ADR			01		LDR		ADR		Load from memory
-LOAD #VAL			02		LDA		VAL		Load absolute value
-COPY A TO C			03		CPAC	-		Copy A to C
-COPY A TO D			04		CPAD	-		Copy A to D
-COPY C TO A			05		CPCA	-		Copy C to A
-COPY D TO A			06		CPDA	-		Copy D to A
-ADD ADR				07		ADD		ADR		Load from memory and add to A
-ADD ADR, CI			08		ADC		ADR		ADD with carry in on
-ADD #VAL			09		ADDA	VAL		Add absolute value to A
-ADD #VAL, CI		0A		ADCA	VAL		ADDA with carry in on
-SUB ADR				0B		SUB		ADR		Load from memory and subtract from A
-SUB ADR, CI			0C		SBC		ADR		SUB without carry in on
-SUB #VAL			0D		SUBA	VAL		Subtract absolute value from A
-SUB #VAL, CI		0E		SBCA	VAL		SUBA without carry in on
-COMP ADR			0F		CMP		ADR		Compare against ADR in memory witout overwriting A
-COMP #ADR			10		CMPA	VAL		Compare against absolute value without overwriting A
-JUMP ADR			11		JMP		ADR		Jumps to ADR in execution
-JUMP ADR, A = B		12		JEQ		ADR		Jump if 0 flag
-JUMP ADR, A != B	13		JNE		ADR		Jump unless 0 flag
-JUMP ADR, A > B		14		JOV		ADR		Jump if carry and not 0 flags
-JUMP ADR, A <= B	15		JNO		ADR		Jump if not carry or 0 flags
-JUMP ADR, A < B		16		JUN		ADR		Jump if neither carry nor 0 flags
-JUMP ADR, A >= B	17		JNU		ADR		Jump if carry or 0 flags
-JUMP ADR, CARRY		18		JCR		ADR		Jump if carry flag
-JUMP ADR, !CARRY	19		JRC		ADR		Jump unless carry flag
-OR ADR				1A		ORR		ADR		Load from memory and OR with A
-OR #VAL				1B		ORA		VAL		OR A with absolute value
-AND ADR				1C		AND		ADR		Load from memory and AND with A
-AND #VAL			1D		ANDA	VAL		AND A with absolute value
-XOR ADR				1E		XOR		ADR		Load from memory and XOR with A
-XOR #VAL			1F		XORA	VAL		XOR A with absolute value
-SHIFT L				20		LSH		-		Shift A left by one
-SHIFT R				21		RSH		-		Shift A right by one
-STORE ADR			22		STA		ADR		Store a byte into memory at ADR
-INC ADR				23		INM		ADR		Increment a byte in memory
-INC					24		INA		-		Increment A
-DEC ADR				25		DCM		ADR		Decrement a byte in memory
-DEC					26		DCA		-		Decrement A
-SHIFT L, ADR		27		LSM		ADR		Shift a byte in memory left
-SHIFT R, ADR		28		RSM		ADR		Shift a byte in memory right
-LOAD ADR, A			29		LDO		ADR		Load a byte in memory using A as an offset
-ROT L				2A		ROL		-		Rotate A left
-ROT R				2B		ROR		-		Rotate A right
-ROT L, ADR			2C		ROLA	ADR		Rotate a byte in memory left
-ROT R, ADR			2D		RORA	ADR		Rotate a byte in memory right
-					...
-HALT				3F		HLT		-		Stops all further execution
+NOP			00	NOP	-	Does nothing
+LOAD ADR		01	LDR	ADR	Load from memory
+LOAD #VAL		02	LDA	VAL	Load absolute value
+COPY A TO C		03	CPAC	-	Copy A to C
+COPY A TO D		04	CPAD	-	Copy A to D
+COPY C TO A		05	CPCA	-	Copy C to A
+COPY D TO A		06	CPDA	-	Copy D to A
+ADD ADR			07	ADD	ADR	Load from memory and add to A
+ADD ADR, CI		08	ADC	ADR	ADD with carry in on
+ADD #VAL		09	ADDA	VAL	Add absolute value to A
+ADD #VAL, CI		0A	ADCA	VAL	ADDA with carry in on
+SUB ADR			0B	SUB	ADR	Load from memory and subtract from A
+SUB ADR, CI		0C	SBC	ADR	SUB without carry in on
+SUB #VAL		0D	SUBA	VAL	Subtract absolute value from A
+SUB #VAL, CI		0E	SBCA	VAL	SUBA without carry in on
+COMP ADR		0F	CMP	ADR	Compare against ADR in memory witout overwriting A
+COMP #ADR		10	CMPA	VAL	Compare against absolute value without overwriting A
+JUMP ADR		11	JMP	ADR	Jumps to ADR in execution
+JUMP ADR, A = B		12	JEQ	ADR	Jump if 0 flag
+JUMP ADR, A != B	13	JNE	ADR	Jump unless 0 flag
+JUMP ADR, A > B		14	JOV	ADR	Jump if carry and not 0 flags
+JUMP ADR, A <= B	15	JNO	ADR	Jump if not carry or 0 flags
+JUMP ADR, A < B		16	JUN	ADR	Jump if neither carry nor 0 flags
+JUMP ADR, A >= B	17	JNU	ADR	Jump if carry or 0 flags
+JUMP ADR, CARRY		18	JCR	ADR	Jump if carry flag
+JUMP ADR, !CARRY	19	JRC	ADR	Jump unless carry flag
+OR ADR			1A	ORR	ADR	Load from memory and OR with A
+OR #VAL			1B	ORA	VAL	OR A with absolute value
+AND ADR			1C	AND	ADR	Load from memory and AND with A
+AND #VAL		1D	ANDA	VAL	AND A with absolute value
+XOR ADR			1E	XOR	ADR	Load from memory and XOR with A
+XOR #VAL		1F	XORA	VAL	XOR A with absolute value
+SHIFT L			20	LSH	-	Shift A left by one
+SHIFT R			21	RSH	-	Shift A right by one
+STORE ADR		22	STA	ADR	Store a byte into memory at ADR
+INC ADR			23	INM	ADR	Increment a byte in memory
+INC			24	INA	-	Increment A
+DEC ADR			25	DCM	ADR	Decrement a byte in memory
+DEC			26	DCA	-	Decrement A
+SHIFT L, ADR		27	LSM	ADR	Shift a byte in memory left
+SHIFT R, ADR		28	RSM	ADR	Shift a byte in memory right
+LOAD ADR, A		29	LDO	ADR	Load a byte in memory using A as an offset
+ROT L			2A	ROL	-	Rotate A left
+ROT R			2B	ROR	-	Rotate A right
+ROT L, ADR		2C	ROLA	ADR	Rotate a byte in memory left
+ROT R, ADR		2D	RORA	ADR	Rotate a byte in memory right
+...
+HALT			3F	HLT	-	Stops all further execution
