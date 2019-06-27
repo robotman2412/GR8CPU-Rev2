@@ -4,7 +4,7 @@ My second CPU project, orderable as a kit!
 
 The instruction set ROMs are in the folder "IS"<br>
 The programs along with the exported files are in the folder "programs"<br>
-The program i used to generate the instruction set ROMs is in the folder "IS"<br>
+The program i used to generate the instruction set ROMs is in the folder "ISGEN"<br>
 Take a look at "CTRL" and "ASMGV2" for an example on how to generate an instruction set.
 
 The assembler creates a folder called "data", which stores the paths.<br>
