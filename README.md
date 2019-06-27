@@ -16,8 +16,8 @@ Note: I must still make a full guide on instruction sets later.
 
 Current Status:
 
-Logical design: Final.
-Instruction set: Final.
+Logical design: Final.<br>
+Instruction set: Final.<br>
 Assembler: Finishing.
 
 Modules:
