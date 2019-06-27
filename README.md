@@ -10,8 +10,6 @@ Take a look at "CTRL" and "ASMGV2" for an example on how to generate an instruct
 The assembler creates a folder called "data", which stores the paths.<br>
 It is recommended you keep this, but not necessary.
 
-Note: I must still make a full guide on instruction sets later.
-
 ---
 
 Current Status:
