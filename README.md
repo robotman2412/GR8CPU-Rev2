@@ -31,3 +31,27 @@ Modules:
 Things to order:
 
 None.
+
+---
+
+Bill of materials so far (as requested):
+
+1x    Arduino nano (for programming, the one that emulates a clock for now doesn't count)<br>
+1x    Alliance AS6C1098-55PCN 128K memory IC<br>
+2x    SN74HC161AN binary counter IC (does not count down)<br>
+17x   Blue LED 5mm<br>
+17x   Red LED 5mm<br>
+8x    Yellow LED 5mm<br>
+1x    Green LED 5mm<br>
+6x    SN74HC244N buffer driver IC<br>
+3x    SN74HC273N D-type flipflop IC (basically register IC)<br>
+2x    SN74HC04N hex inverter IC<br>
+3x    SN74HC02N NOR gate IC<br>
+43x   200 Ohm resistor (for LED driving)<br>
+20x   1-10 KOhm resistor (as pulldown, 5 KOhm is recommended)<br>
+3x    Normally open generic push buttons<br>
+7x    4-Switch DIP switch package (one here may be substituted for a 3-switch one)<br>
+1x    Generic 2-5V battery pack<br>
+2x    Generic low voltage drop diodes<br>
+9999x Patience (altough 10000x is recommended)<br>
+      Wiring, red, green, blue, black and yellow (i went with 100m rolls for pretty cheap)<br>
