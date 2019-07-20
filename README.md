@@ -22,7 +22,7 @@ Assembler: Finishing.
 
 Modules:
 
-#001 Register V1: Success.<br>
+#001 Register V1: Package error.<br>
 #002 Bus V1: Failure, wrong connectors.<br>
 #003 Program counter V1: PCB Design stage, breadboard success.<br>
 #004 Motherboard V2 (Former Bus): Ready to order.<br>
