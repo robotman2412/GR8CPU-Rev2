@@ -26,7 +26,8 @@ Modules:
 #002 Bus V1: Failure, wrong connectors.<br>
 #003 Program counter V1: PCB Design stage, breadboard success.<br>
 #004 Motherboard V2 (Former Bus): Ready to order.<br>
-#005 Flag register V1: Design stage.
+#005 Flag register V1: Design stage.<br>
+#006 Register V2: Ready to order.
 
 Things to order:
 
