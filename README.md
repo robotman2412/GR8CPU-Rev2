@@ -14,6 +14,21 @@ I also made a guide on how to create programs in [assembler.md](../master/assemb
 
 ---
 
+General specs:
+GR8CPU Rev 2 is an 8-bit CPU bult out of TTL logic ICs.
+256 bytes are accessible by the CPU, but i have a ram chip with 128Kib installed.
+The ALU has most of the basic features:
+- add / subtract
+- shift and rotate either left or right
+- carry flag (set by shift instead of add if shift mode is active)
+- zero flag (only on if the final output which may already be inverted is zero)
+I have no particular plan for clock speed, maybe 10KHz.
+
+I have a bunch of sample programs as an example.
+There is also IS/IS.txt, with more info on the instruction set.
+
+---
+
 Current Status:
 
 Logical design: Final.<br>
@@ -21,6 +36,8 @@ Instruction set: Final.<br>
 Assembler: Finishing.
 
 Modules:
+
+Note: this is the PCB as part of the kit.
 
 #001 Register V1: Package error.<br>
 #002 Bus V1: Failure, wrong connectors.<br>
