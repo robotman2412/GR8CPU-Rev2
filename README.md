@@ -6,6 +6,7 @@ The instruction set ROMs are in the folder "IS"<br>
 The programs along with the exported files are in the folder "programs"<br>
 The program i used to generate the instruction set ROMs is in the folder "ISGEN"<br>
 Take a look at [creating-an-is.md](../master/ISGEN/creating-an-is.md) for a guide on how to create an instruction set.
+Note: I will change the structure of IS files this afternoon -- to allow for my assembler to be used on more complex systems.
 
 The assembler creates a folder called "data", which stores the paths.<br>
 It is recommended you keep this, but not necessary.<br>
