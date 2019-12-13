@@ -49,7 +49,9 @@ Note: this is the PCB as part of the kit.
 
 Things to order:
 
-None.
+1x    10 / 20 / 40 KHz oscillator for the graphics card i want to make.
+1x    RGBI connector (often called VGA) for the grphics card.
+1-2x   EEPROM, i already have 2 but i need another for the graphics card.
 
 ---
 
