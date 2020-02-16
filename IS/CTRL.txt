@@ -14,7 +14,7 @@ ROC C: out
 ROD D: out
 FRI FLAG: in (from ALU)
 -
-OPTN2 OPTN: option bit 2
+OPTN2 OPTN: option bit 2, invert branch condition
 ISA RAM: set adress
 ILD RAM: load
 IST RAM: store
@@ -25,8 +25,8 @@ JMP PC: in
 JBC PC: in if branch condition XOR OPTN2
 STR CU: finish instruction
 -
-ADC ALU: disable internal carry
+ADC ALU: disable internal carry (ADD -> XOR)
 ADA ALU: disable AND gates (XOR -> OR) / rotate instead of shift
 OPTN1 OPTN: option bit 1
 -
--
+RSTB B: reset
