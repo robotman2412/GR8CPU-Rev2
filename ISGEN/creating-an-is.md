@@ -22,7 +22,30 @@ See [CTRL.txt](../master/IS/CTRL.txt) for an example on how i did it.
 
 Now, we must make the assembly guide.<br>
 The assembly guide describes the operations for the instructions and also the format for the assembler.<br>
-Lines starting with "@" are currently ignored, but i later want to add functionality to this.<br>
+In the beginning of this file, you must describe your CPU.<br>
+Here you see an example of a CPU definition:
+```
+@Word:8
+@Special:A=1
+@Special:V=1
+@Memory:1
+@Inst:1
+@Nolabel:A B C D L R to nop load copy add comp store shift rot inc dex and or xor jump halt
+@NolabelChar:=!<>#$%+-()&@,.
+@ISGEN:inst:64
+```
+This is at the beginning of the file.
+@Word defines how many bits your CPU is, in this case 8-bit.<br>
+@Special defines a special token in your instruction set, where a value or address is expected.<br>
+A=1 means that the special token %A% (in our case, address) takes one word, which would be 8 bits because this CPU def. is 8 bits.<br>
+When encountered, the assembler expects not exactly this token in oyur program, but a label or value within range.<br>
+@Memory defines how many words are used for memory, in this case 1. This means that the memory is at most 256 bytes large. (2^8)<br>
+@Nolabel defines illegal names for labels.<br>
+@Nolabelchar defines which characters can never be in a label. Note that this always inclused space.<br>
+@ISGEN is always ignored, it was a parameter for the ISGEN, but never used.<br>
+Finally, @Inst defines how many words an instruction consists of.<br>
+This is usually just 1.<br><br>
+Next up are instruction definitions.<br>
 The format of a line is as such:
 ```
 INST NAME "TOKEN(s)" CONTROLS
@@ -64,7 +87,7 @@ Similarly, "%V%" means a value is expected.<br>
 The assembler handles addresses and values.<br>
 These must be in the correct order because otherwise the data won't be added in the correct order either.<br>
 Later on, i want the next token to be used to terminate the expression, but this is not yet supported.<br>
-This means that for now, the next token must be ',' to not corrupt expressions.
+This means that for now, there are no expressions directly in instructions.
 
 If you have any questions, please open an error.<br>
 I don't currently have a good e-mail or number to give you.
