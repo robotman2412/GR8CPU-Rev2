@@ -1,3 +1,5 @@
+First line padded: false
+
 $00         *            =       $00                    
 $00 - $01                load    # message0             02 42 
 $02 - $03                store   printx_msg             22 65 
@@ -38,8 +40,8 @@ $42 - $52   message0     data    "Fibonachi, yay!\n\0"  46 69 62 6f 6e 61 63 68 
 $53 - $61   message1     data    "The number is \0"     54 68 65 20 6e 75 6d 62 65 72 20 69 73 20 00 
 $62 - $63   message2     data    "\n\0"                 0a 00 
 $64         printx                                      
-$64         printx_msg   =       printx + 1             
 $64 - $65                load    $00                    01 00 
+$66         printx_msg   =       printx + 1             
 $66 - $67                comp    # $00                  10 00 
 $68 - $69   printx_jmp   jump    $00 , A = B            12 00 
 $6a         printx_ret   =       printx_jmp + 1         
@@ -116,3 +118,5 @@ message0   $42
 printx     $64
 message2   $62
 message1   $53
+
+Program length: 176 / 256 bytes (68.75% of maximum size)

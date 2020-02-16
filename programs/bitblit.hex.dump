@@ -1,0 +1,27 @@
+$00 - $01   bitblit        load    # $08                02 08 
+$02 - $03                  store   bitblt_cnt           22 17 
+$04 - $05   bitblt_loop    rot     L , bitblt_data      2c 16 
+$06         bitblt_data    =       bitblt_loop + 1      
+$06 - $07                  and     # %00000001          1d 01 
+$08 - $09                  add     # '0'                09 30 
+$0a - $0a                  copy    A to D               04 
+$0b - $0c                  dec     bitblt_cnt           25 17 
+$0d - $0e                  comp    # $00                10 00 
+$0f - $10                  jump    bitblt_loop , A > B  14 04 
+$11 - $12                  load    # '\n'               02 0a 
+$13 - $13                  halt                         3f 
+$14 - $15   bitblt_mret    jump    $00                  11 00 
+$16         bitblt_ret     =       bitblt_mret + 1      
+$16 - $16   bitblt_data    byte    %10010110            96 
+$17 - $17   bitblt_cnt     byte    $00                  00 
+
+Labels:
+
+bitblit     $00
+bitblt_data $16
+bitblt_cnt  $17
+bitblt_mret $14
+bitblt_loop $04
+bitblt_ret  $15
+
+Program length: 24 / 256 bytes (9.375% of maximum size)

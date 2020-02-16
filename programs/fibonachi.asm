@@ -1,17 +1,19 @@
-		load #$01		;$02 $01
-		store numz		;$22 $22
-fibs	load numy		;$01 $21
-		store numx		;$22 $20
-		load numz		;$01 $22
-		store numy		;$22 $21
-		load numx		;$01 $20
-		add numy		;$07 $21
-		store numz		;$22 $22
-		copy A, C		;$03
-		jump fibs, NCA	;$19 $04
-		halt			;$3f
+start	load #$00
+		store numx
+		store numy
+		inc
+		store numz
+fibs	copy A to C
+		load numy
+		store numx
+		load numz
+		store numy
+		load numx
+		add numy
+		store numz
+		jump fibs, !carry
+		jump start
 
-
-numx = $20
-numy = $21
-numz = $22
+numx	data $00
+numy	data $00
+numz	data $00

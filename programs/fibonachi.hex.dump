@@ -1,0 +1,30 @@
+First line padded: false
+
+$00 - $01   start    load    # $00          02 00 
+$02 - $03            store   numx           22 1c 
+$04 - $05            store   numy           22 1d 
+$06 - $06            inc                    24 
+$07 - $08            store   numz           22 1e 
+$09 - $09   fibs     copy    A to C         03 
+$0a - $0b            load    numy           01 1d 
+$0c - $0d            store   numx           22 1c 
+$0e - $0f            load    numz           01 1e 
+$10 - $11            store   numy           22 1d 
+$12 - $13            load    numx           01 1c 
+$14 - $15            add     numy           07 1d 
+$16 - $17            store   numz           22 1e 
+$18 - $19            jump    fibs , !carry  19 09 
+$1a - $1b            jump    start          11 00 
+$1c - $1c   numx     data    $00            00 
+$1d - $1d   numy     data    $00            00 
+$1e - $1e   numz     data    $00            00 
+
+Labels:
+
+numy  $1d
+numx  $1c
+numz  $1e
+start $00
+fibs  $09
+
+Program length: 31 / 256 bytes (12.109375% of maximum size)

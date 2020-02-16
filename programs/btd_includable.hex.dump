@@ -1,0 +1,61 @@
+First line padded: false
+
+$00 - $00   asc_start    data    $30                30 
+$01 - $01   number       data    $00                00 
+$02 - $02   hundreds     data    $00                00 
+$03 - $03   tens         data    $00                00 
+$04         btd                                     
+$04 - $05                load    # $00              02 00 
+$06 - $07                store   hundreds           22 02 
+$08 - $09                store   tens               22 03 
+$0a         btd_loop                                
+$0a - $0b                load    number             01 01 
+$0c - $0d                comp    # 100              10 64 
+$0e - $0f                jump    btd_loop1 , A < B  16 18 
+$10 - $11                sub     # 100              0d 64 
+$12 - $13                store   number             22 01 
+$14 - $15                inc     hundreds           23 02 
+$16 - $17                jump    btd_loop           11 0a 
+$18         btd_loop1                               
+$18 - $19                comp    # 10               10 0a 
+$1a - $1b                jump    btd_end , A < B    16 24 
+$1c - $1d                sub     # 10               0d 0a 
+$1e - $1f                store   number             22 01 
+$20 - $21                inc     tens               23 03 
+$22 - $23                jump    btd_loop           11 0a 
+$24         btd_end                                 
+$24 - $25                load    hundreds           01 02 
+$26 - $27                comp    # $01              10 01 
+$28 - $29                jump    btd_end1 , A < B   16 2f 
+$2a - $2b                add     asc_start          07 00 
+$2c - $2c                copy    A to D             04 
+$2d - $2e                jump    btd_end2           11 35 
+$2f - $30   btd_end1     load    tens               01 03 
+$31 - $32                comp    # $01              10 01 
+$33 - $34                jump    btd_end3 , A < B   16 3a 
+$35 - $36   btd_end2     load    tens               01 03 
+$37 - $38                add     asc_start          07 00 
+$39 - $39                copy    A to D             04 
+$3a - $3b   btd_end3     load    asc_start          01 00 
+$3c - $3d                add     number             07 01 
+$3e - $3e                copy    A to D             04 
+$3f - $40   btd_jmp      jump    $00                11 00 
+$41         btd_ret      =       btd_jmp + 1        
+
+Labels:
+
+tens      $03
+btd_jmp   $3f
+btd_loop  $0a
+btd_loop1 $18
+btd_end   $24
+btd_end2  $35
+asc_start $00
+number    $01
+btd_end3  $3a
+btd       $04
+btd_ret   $40
+btd_end1  $2f
+hundreds  $02
+
+Program length: 65 / 256 bytes (25.390625% of maximum size)

@@ -1,13 +1,13 @@
-$00         *      =      $00        
-$00 - $01          rot    R , mem    2d 05 
-$02 - $03          rot    L , mem    2c 05 
-$04 - $04          halt              3f 
-$05 - $05   mem    byte   %00010001  11 
-$06 - $06          byte   %10001000  88 
-$07 - $07          byte   %00010001  11 
+First line padded: false
+
+$00         *      =      $00     
+$00 - $01          dec    num     25 04 
+$02 - $02          copy   A to C  03 
+$03 - $03          halt           3f 
+$04 - $04   num    data   70      46 
 
 Labels:
 
-mem $05
+num $04
 
-Program length: 8 / 256 bytes (3.125% of maximum size)
+Program length: 5 / 256 bytes (1.953125% of maximum size)

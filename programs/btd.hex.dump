@@ -1,0 +1,97 @@
+First line padded: false
+
+$00         *            =       $00                                     
+$00 - $01                load    # bcd                                   02 4d 
+$02 - $03                store   printx_ret                              22 47 
+$04 - $05                load    # message0                              02 0e 
+$06 - $07                store   printx_msg                              22 43 
+$08 - $09                jump    printx                                  11 42 
+$0a - $0a   asc_start    data    $30                                     30 
+$0b - $0b   number       data    $00                                     00 
+$0c - $0c   hundreds     data    $00                                     00 
+$0d - $0d   tens         data    $00                                     00 
+$0e - $2f   message0     data    "Doing binary to decimal stuff...\n\0"  44 6f 69 6e 67 20 62 69 6e 61 72 79 20 74 6f 20 64 65 63 69 6d 61 6c 20 73 74 75 66 66 2e 2e 2e 0a 00 
+$30 - $3e   message1     data    "The number is \0"                      54 68 65 20 6e 75 6d 62 65 72 20 69 73 20 00 
+$3f - $41   message2     data    "!\n\0"                                 21 0a 00 
+$42         printx                                                       
+$42         printx_msg   =       printx + 1                              
+$42 - $43                load    $00                                     01 00 
+$44 - $45                comp    # $00                                   10 00 
+$46 - $47   printx_jmp   jump    $00 , A = B                             12 00 
+$48         printx_ret   =       printx_jmp + 1                          
+$48 - $48                copy    A to D                                  04 
+$49 - $4a                inc     printx_msg                              23 43 
+$4b - $4c                jump    printx                                  11 42 
+$4d         bcd                                                          
+$4d - $4e                load    # $00                                   02 00 
+$4f - $50                store   hundreds                                22 0c 
+$51 - $52                store   tens                                    22 0d 
+$53 - $53                copy    D to A                                  06 
+$54 - $55                store   number                                  22 0b 
+$56         bcd_loop                                                     
+$56 - $57                load    number                                  01 0b 
+$58 - $59                comp    # 100                                   10 64 
+$5a - $5b                jump    bcd_loop1 , A < B                       16 64 
+$5c - $5d                sub     # 100                                   0d 64 
+$5e - $5f                store   number                                  22 0b 
+$60 - $61                inc     hundreds                                23 0c 
+$62 - $63                jump    bcd_loop                                11 56 
+$64         bcd_loop1                                                    
+$64 - $65                comp    # 10                                    10 0a 
+$66 - $67                jump    bcd_end , A < B                         16 70 
+$68 - $69                sub     # 10                                    0d 0a 
+$6a - $6b                store   number                                  22 0b 
+$6c - $6d                inc     tens                                    23 0d 
+$6e - $6f                jump    bcd_loop                                11 56 
+$70         bcd_end                                                      
+$70 - $71                load    # bcd_end0                              02 7a 
+$72 - $73                store   printx_ret                              22 47 
+$74 - $75                load    # message1                              02 30 
+$76 - $77                store   printx_msg                              22 43 
+$78 - $79                jump    printx                                  11 42 
+$7a - $7b   bcd_end0     load    hundreds                                01 0c 
+$7c - $7d                comp    # $01                                   10 01 
+$7e - $7f                jump    bcd_end1 , A < B                        16 85 
+$80 - $81                add     asc_start                               07 0a 
+$82 - $82                copy    A to D                                  04 
+$83 - $84                jump    bcd_end2                                11 8b 
+$85 - $86   bcd_end1     load    tens                                    01 0d 
+$87 - $88                comp    # $01                                   10 01 
+$89 - $8a                jump    bcd_end3 , A < B                        16 90 
+$8b - $8c   bcd_end2     load    tens                                    01 0d 
+$8d - $8e                add     asc_start                               07 0a 
+$8f - $8f                copy    A to D                                  04 
+$90 - $91   bcd_end3     load    asc_start                               01 0a 
+$92 - $93                add     number                                  07 0b 
+$94 - $94                copy    A to D                                  04 
+$95 - $96                load    # bcd_end4                              02 9f 
+$97 - $98                store   printx_ret                              22 47 
+$99 - $9a                load    # message2                              02 3f 
+$9b - $9c                store   printx_msg                              22 43 
+$9d - $9e                jump    printx                                  11 42 
+$9f - $9f   bcd_end4     halt                                            3f 
+
+Labels:
+
+tens       $0d
+bcd        $4d
+printx_jmp $46
+bcd_loop1  $64
+bcd_loop   $56
+printx_msg $43
+printx_ret $47
+asc_start  $0a
+number     $0b
+bcd_end2   $8b
+bcd_end1   $85
+bcd_end0   $7a
+hundreds   $0c
+message0   $0e
+printx     $42
+message2   $3f
+bcd_end4   $9f
+message1   $30
+bcd_end    $70
+bcd_end3   $90
+
+Program length: 160 / 256 bytes (62.5% of maximum size)

@@ -1,0 +1,161 @@
+First line padded: false
+
+$00 - $01                load    # mdiv1            02 23 
+$02 - $03                store   div_ret            22 be 
+$04 - $05                load    # btd              02 4b 
+$06 - $07                store   printx_ret         22 8d 
+$08 - $09                load    # mprime1          02 3b 
+$0a - $0b                store   btd_ret            22 87 
+$0c - $0d   start        load    # $03              02 03 
+$0e - $0f                store   prime              22 c7 
+$10 - $11                jump    primeprint         11 31 
+$12 - $13   primeloop    load    prime              01 c7 
+$14 - $15                sub     # 2                0d 02 
+$16 - $17                store   divider            22 94 
+$18 - $19                load    # 3                02 03 
+$1a - $1b                store   divmin             22 c8 
+$1c - $1d   divloop      load    prime              01 c7 
+$1e - $1f                store   remainder          22 93 
+$20 - $20                copy    A to C             03 
+$21 - $22                jump    divide             11 97 
+$23 - $24   mdiv1        load    remainder          01 93 
+$25 - $26                comp    # $00              10 00 
+$27 - $28                jump    mprime2 , A = B    12 3e 
+$29 - $2a                dec     divider            25 94 
+$2b - $2c                dec     divider            25 94 
+$2d - $2e                comp    divmin             0f c8 
+$2f - $30                jump    divloop , A > = B  17 1c 
+$31 - $32   primeprint   load    prime              01 c7 
+$33 - $34                store   number             22 48 
+$35 - $36                load    # msg              02 bf 
+$37 - $38                store   printx_msg         22 89 
+$39 - $3a                jump    printx             11 88 
+$3b - $3c   mprime1      load    # '\n'             02 0a 
+$3d - $3d                copy    A to D             04 
+$3e - $3f   mprime2      inc     prime              23 c7 
+$40 - $41                jump    end , carry        18 46 
+$42 - $43                inc     prime              23 c7 
+$44 - $45                jump    primeloop , !carry 19 12 
+$46 - $46   end          halt                       3f 
+$47 - $47   asc_start    data    $30                30 
+$48 - $48   number       data    $00                00 
+$49 - $49   hundreds     data    $00                00 
+$4a - $4a   tens         data    $00                00 
+$4b         btd                                     
+$4b - $4c                load    # $00              02 00 
+$4d - $4e                store   hundreds           22 49 
+$4f - $50                store   tens               22 4a 
+$51         btd_loop                                
+$51 - $52                load    number             01 48 
+$53 - $54                comp    # 100              10 64 
+$55 - $56                jump    btd_loop1 , A < B  16 5f 
+$57 - $58                sub     # 100              0d 64 
+$59 - $5a                store   number             22 48 
+$5b - $5c                inc     hundreds           23 49 
+$5d - $5e                jump    btd_loop           11 51 
+$5f         btd_loop1                               
+$5f - $60                comp    # 10               10 0a 
+$61 - $62                jump    btd_end , A < B    16 6b 
+$63 - $64                sub     # 10               0d 0a 
+$65 - $66                store   number             22 48 
+$67 - $68                inc     tens               23 4a 
+$69 - $6a                jump    btd_loop           11 51 
+$6b         btd_end                                 
+$6b - $6c                load    hundreds           01 49 
+$6d - $6e                comp    # $01              10 01 
+$6f - $70                jump    btd_end1 , A < B   16 76 
+$71 - $72                add     asc_start          07 47 
+$73 - $73                copy    A to D             04 
+$74 - $75                jump    btd_end2           11 7c 
+$76 - $77   btd_end1     load    tens               01 4a 
+$78 - $79                comp    # $01              10 01 
+$7a - $7b                jump    btd_end3 , A < B   16 81 
+$7c - $7d   btd_end2     load    tens               01 4a 
+$7e - $7f                add     asc_start          07 47 
+$80 - $80                copy    A to D             04 
+$81 - $82   btd_end3     load    asc_start          01 47 
+$83 - $84                add     number             07 48 
+$85 - $85                copy    A to D             04 
+$86 - $87   btd_jmp      jump    $00                11 00 
+$88         btd_ret      =       btd_jmp + 1        
+$88         printx                                  
+$88 - $89                load    $00                01 00 
+$8a         printx_msg   =       printx + 1         
+$8a - $8b                comp    # $00              10 00 
+$8c - $8d   printx_jmp   jump    $00 , A = B        12 00 
+$8e         printx_ret   =       printx_jmp + 1     
+$8e - $8e                copy    A to D             04 
+$8f - $90                inc     printx_msg         23 89 
+$91 - $92                jump    printx             11 88 
+$93 - $93   remainder    data    $00                00 
+$94 - $94   divider      data    $00                00 
+$95 - $95   result       data    $00                00 
+$96 - $96   max          data    $00                00 
+$97 - $98   divide       load    # $00              02 00 
+$99 - $9a                store   result             22 95 
+$9b - $9c                store   max                22 96 
+$9d - $9e   maxfl        inc     max                23 96 
+$9f - $a0                rot     L , divider        2c 94 
+$a1 - $a2                jump    maxfl , !carry     19 9d 
+$a3 - $a4                rot     R , divider        2d 94 
+$a5 - $a6                jump    sdivl              11 ab 
+$a7 - $a8   divl         shift   R , divider        28 94 
+$a9 - $aa                shift   L , result         27 95 
+$ab - $ac   sdivl        load    remainder          01 93 
+$ad - $ae                comp    divider            0f 94 
+$af - $b0                jump    mdiv0 , A < B      16 b7 
+$b1 - $b2                sub     divider            0b 94 
+$b3 - $b4                store   remainder          22 93 
+$b5 - $b6                inc     result             23 95 
+$b7 - $b8   mdiv0        dec     max                25 96 
+$b9 - $ba                comp    # 0                10 00 
+$bb - $bc                jump    divl , A > B       14 a7 
+$bd - $be   div_mret     jump    $00                11 00 
+$bf         div_ret      =       div_mret + 1       
+$bf - $c6   msg          data    "Prime: \0"        50 72 69 6d 65 3a 20 00 
+$c7 - $c7   prime        data    $00                00 
+$c8 - $c8   divmin       data    $00                00 
+
+Labels:
+
+tens       $4a
+msg        $bf
+mdiv1      $23
+divmin     $c8
+mdiv0      $b7
+primeloop  $12
+maxfl      $9d
+btd_loop1  $5f
+btd_end2   $7c
+printx_ret $8d
+result     $95
+asc_start  $47
+number     $48
+btd_end3   $81
+btd        $4b
+divl       $a7
+divider    $94
+btd_end1   $76
+end        $46
+divide     $97
+hundreds   $49
+mprime2    $3e
+prime      $c7
+mprime1    $3b
+btd_jmp    $86
+printx_jmp $8c
+max        $96
+start      $0c
+btd_loop   $51
+btd_end    $6b
+sdivl      $ab
+div_mret   $bd
+printx_msg $89
+div_ret    $be
+btd_ret    $87
+divloop    $1c
+primeprint $31
+printx     $88
+remainder  $93
+
+Program length: 201 / 256 bytes (78.515625% of maximum size)

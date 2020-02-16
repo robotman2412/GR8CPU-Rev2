@@ -1,0 +1,82 @@
+First line padded: false
+
+$00 - $01                load    # mdiv1            02 1a 
+$02 - $03                store   div_ret            22 61 
+$04 - $05   start        load    # $03              02 03 
+$06 - $07                store   prime              22 62 
+$08 - $09                jump    primeprint         11 28 
+$0a - $0b   primeloop    load    prime              01 62 
+$0c - $0d                sub     # 2                0d 02 
+$0e - $0f                store   divider            22 37 
+$10 - $11                load    # 3                02 03 
+$12 - $13                store   divmin             22 63 
+$14 - $15   divloop      load    prime              01 62 
+$16 - $17                store   remainder          22 36 
+$18 - $19                jump    divide             11 3a 
+$1a - $1b   mdiv1        load    remainder          01 36 
+$1c - $1d                comp    # $00              10 00 
+$1e - $1f                jump    mprime , A = B     12 2d 
+$20 - $21                dec     divider            25 37 
+$22 - $23                dec     divider            25 37 
+$24 - $25                comp    divmin             0f 63 
+$26 - $27                jump    divloop , A > = B  17 14 
+$28 - $29   primeprint   load    prime              01 62 
+$2a - $2a                copy    A to C             03 
+$2b - $2c                jump    mprime             11 2d 
+$2d - $2e   mprime       inc     prime              23 62 
+$2f - $30                jump    end , carry        18 35 
+$31 - $32                inc     prime              23 62 
+$33 - $34                jump    primeloop , !carry 19 0a 
+$35 - $35   end          halt                       3f 
+$36 - $36   remainder    data    $00                00 
+$37 - $37   divider      data    $00                00 
+$38 - $38   result       data    $00                00 
+$39 - $39   max          data    $00                00 
+$3a - $3b   divide       load    # $00              02 00 
+$3c - $3d                store   result             22 38 
+$3e - $3f                store   max                22 39 
+$40 - $41   maxfl        inc     max                23 39 
+$42 - $43                rot     L , divider        2c 37 
+$44 - $45                jump    maxfl , !carry     19 40 
+$46 - $47                rot     R , divider        2d 37 
+$48 - $49                jump    sdivl              11 4e 
+$4a - $4b   divl         shift   R , divider        28 37 
+$4c - $4d                shift   L , result         27 38 
+$4e - $4f   sdivl        load    remainder          01 36 
+$50 - $51                comp    divider            0f 37 
+$52 - $53                jump    mdiv0 , A < B      16 5a 
+$54 - $55                sub     divider            0b 37 
+$56 - $57                store   remainder          22 36 
+$58 - $59                inc     result             23 38 
+$5a - $5b   mdiv0        dec     max                25 39 
+$5c - $5d                comp    # 0                10 00 
+$5e - $5f                jump    divl , A > B       14 4a 
+$60 - $61   div_mret     jump    $00                11 00 
+$62         div_ret      =       div_mret + 1       
+$62 - $62   prime        data    $00                00 
+$63 - $63   divmin       data    $00                00 
+
+Labels:
+
+prime      $62
+mdiv1      $1a
+divmin     $63
+mdiv0      $5a
+primeloop  $0a
+max        $39
+maxfl      $40
+start      $04
+mprime     $2d
+sdivl      $4e
+div_mret   $60
+result     $38
+divl       $4a
+div_ret    $61
+divider    $37
+divloop    $14
+primeprint $28
+end        $35
+divide     $3a
+remainder  $36
+
+Program length: 100 / 256 bytes (39.0625% of maximum size)

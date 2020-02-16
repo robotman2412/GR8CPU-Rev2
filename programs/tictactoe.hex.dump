@@ -1,3 +1,5 @@
+First line padded: false
+
 $00 - $01                 jump    rst_field                          11 f4 
 $02 - $05   tie_msg       data    "Tie\n"                            54 69 65 0a 
 $06 - $06   win_msg       data    $00                                00 

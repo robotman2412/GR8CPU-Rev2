@@ -1,0 +1,184 @@
+First line padded: false
+
+$00 - $01                 jump    rst_field                          11 ee 
+$02 - $05   tie_msg       data    "Tie\n"                            54 69 65 0a 
+$06 - $06   win_msg       data    $00                                00 
+$07 - $0c                 data    " wins\n"                          20 77 69 6e 73 0a 
+$0d - $0d   player        data    $01                                01 
+$0e - $10   piece_data    data    " 0x"                              20 30 78 
+$11 - $16   board_div     data    "-+-+-\n"                          2d 2b 2d 2b 2d 0a 
+$17 - $19   field         data    %00000000 , %00000000 , %00000000  00 00 00 
+$1a         field1        =       field + 1                          
+$1a         field2        =       field + 2                          
+$1a - $1a   moves         data    $00                                00 
+$1b - $1b   t1_temp       data    $00                                00 
+$1c - $1c   t2_temp       data    $00                                00 
+$1d - $1d   t3_temp       data    $00                                00 
+$1e - $1f   disp_field    load    # dispf_loop                       02 26 
+$20 - $21                 store   printx_ret                         22 e8 
+$22 - $23                 load    # $00                              02 00 
+$24 - $25                 store   t2_temp                            22 1c 
+$26 - $27   dispf_loop    load    t2_temp                            01 1c 
+$28 - $29                 load    field , A                          29 17 
+$2a - $2a                 copy    A to C                             03 
+$2b - $2c                 load    # $03                              02 03 
+$2d - $2e                 store   t1_temp                            22 1b 
+$2f - $30                 jump    disp_col                           11 34 
+$31 - $32   dispc_loop    load    # '|'                              02 7c 
+$33 - $33                 copy    A to D                             04 
+$34         disp_col                                                 
+$34 - $34                 shift   R , C                              31 
+$35 - $35                 shift   R , C                              31 
+$36 - $37                 and     # %00000011                        1d 03 
+$38 - $39                 load    piece_data , A                     29 0e 
+$3a - $3a                 copy    A to D                             04 
+$3b - $3c                 dec     t1_temp                            25 1b 
+$3d - $3e                 jump    dispc_loop , A ! = B               13 31 
+$3f - $40                 load    # '\n'                             02 0a 
+$41 - $41                 copy    A to D                             04 
+$42 - $43                 inc     t2_temp                            23 1c 
+$44 - $45                 comp    # $03                              10 03 
+$46 - $47                 load    # board_div                        02 11 
+$48 - $49                 store   printx_msg                         22 e3 
+$4a - $4b                 jump    printx , A ! = B                   13 e2 
+$4c - $4d   win_check     load    # $00                              02 00 
+$4e - $4e                 copy    A to C                             03 
+$4f - $50                 load    # $ff                              02 ff 
+$51 - $52                 store   t2_temp                            22 1c 
+$53 - $54                 load    player                             01 0d 
+$55 - $56                 comp    # $01                              10 01 
+$57 - $58                 load    # %01010100                        02 54 
+$59 - $5a                 jump    winc_0 , A = B                     12 5c 
+$5b - $5b                 shift   L                                  20 
+$5c - $5d   winc_0        store   t3_temp                            22 1d 
+$5e - $5e   winc_loop     copy    C to A                             05 
+$5f - $60                 load    field , A                          29 17 
+$61 - $62                 comp    t3_temp                            0f 1d 
+$63 - $64                 jump    on_win , A = B                     12 d6 
+$65 - $66                 and     t2_temp                            1c 1c 
+$67 - $68                 store   t2_temp                            22 1c 
+$69 - $69                 inc     C                                  2e 
+$6a - $6b                 comp    # $03                              10 03 
+$6c - $6d                 jump    winc_loop , A ! = B                13 5e 
+$6e - $6f                 load    t2_temp                            01 1c 
+$70 - $71                 comp    # $00                              10 00 
+$72 - $73                 jump    on_win , A ! = B                   13 d6 
+$74 - $75   winc_diag     load    field1                             01 18 
+$76 - $77                 and     # %00110000                        1d 30 
+$78 - $79                 and     t3_temp                            1c 1d 
+$7a - $7b                 jump    tie_check , A = B                  12 88 
+$7c - $7d                 load    field                              01 17 
+$7e - $7e                 rot     R                                  2b 
+$7f - $7f                 rot     R                                  2b 
+$80 - $80                 rot     R                                  2b 
+$81 - $81                 rot     R                                  2b 
+$82 - $83                 and     field2                             1c 19 
+$84 - $85                 and     t3_temp                            1c 1d 
+$86 - $87                 jump    on_win , A ! = B                   13 d6 
+$88 - $89   tie_check     inc     moves                              23 1a 
+$8a - $8b                 comp    # $09                              10 09 
+$8c - $8d                 jump    on_tie , A > B                     14 da 
+$8e - $8f   prc_invp      dec     player                             25 0d 
+$90 - $91                 xor     # $01                              1f 01 
+$92 - $92                 inc                                        24 
+$93 - $94                 store   player                             22 0d 
+$95 - $96   prc_move      load    player                             01 0d 
+$97 - $98                 load    piece_data , A                     29 0e 
+$99 - $99                 copy    A to D                             04 
+$9a - $9b                 store   win_msg                            22 06 
+$9c - $9d                 load    # '\n'                             02 0a 
+$9e - $9e                 copy    A to D                             04 
+$9f - $9f   prcm_inp      copy    D to A                             06 
+$a0 - $a0                 copy    A to C                             03 
+$a1 - $a2                 and     # %10000000                        1d 80 
+$a3 - $a4                 jump    rst_field , A ! = B                13 ee 
+$a5 - $a5                 copy    C to A                             05 
+$a6 - $a7                 and     # %00000011                        1d 03 
+$a8 - $a8                 dec                                        26 
+$a9 - $aa                 store   t1_temp                            22 1b 
+$ab - $ab                 shift   R , C                              31 
+$ac - $ac                 shift   R , C                              31 
+$ad - $ae                 load    player                             01 0d 
+$af - $b0                 store   t3_temp                            22 1d 
+$b1 - $b2                 load    t1_temp                            01 1b 
+$b3 - $b4                 load    field , A                          29 17 
+$b5 - $b6                 store   t2_temp                            22 1c 
+$b7 - $b8   prcm_loop     shift   R , t2_temp                        28 1c 
+$b9 - $ba                 shift   R , t2_temp                        28 1c 
+$bb - $bc                 shift   L , t3_temp                        27 1d 
+$bd - $be                 shift   L , t3_temp                        27 1d 
+$bf - $bf                 dec     C                                  2f 
+$c0 - $c1                 jump    prcm_loop , A ! = B                13 b7 
+$c2 - $c3                 load    t2_temp                            01 1c 
+$c4 - $c5                 and     # %00000011                        1d 03 
+$c6 - $c7                 jump    prcm_inp , A ! = B                 13 9f 
+$c8 - $c9                 load    t1_temp                            01 1b 
+$ca - $cb                 add     # field                            09 17 
+$cc - $cd                 store   prcm_str                           22 d3 
+$ce - $cf                 load    $00 , A                            29 00 
+$d0 - $d1                 or      t3_temp                            1a 1d 
+$d2 - $d3   prcm_str      store   $00                                22 00 
+$d4         prcm_str      =       prcm_str + 1                       
+$d4 - $d5                 jump    disp_field                         11 1e 
+$d6 - $d7   on_win        load    # win_msg                          02 06 
+$d8 - $d9                 jump    on_end                             11 dc 
+$da - $db   on_tie        load    # tie_msg                          02 02 
+$dc - $dd   on_end        store   printx_msg                         22 e3 
+$de - $df                 load    # rst_wait                         02 ed 
+$e0 - $e1                 store   printx_ret                         22 e8 
+$e2         printx                                                   
+$e2 - $e3                 load    $00                                01 00 
+$e4         printx_msg    =       printx + 1                         
+$e4 - $e4                 copy    A to D                             04 
+$e5 - $e6                 comp    # '\n'                             10 0a 
+$e7 - $e8   printx_jmp    jump    $00 , A = B                        12 00 
+$e9         printx_ret    =       printx_jmp + 1                     
+$e9 - $ea                 inc     printx_msg                         23 e3 
+$eb - $ec                 jump    printx                             11 e2 
+$ed - $ed   rst_wait      copy    D to A                             06 
+$ee - $ef   rst_field     load    # $00                              02 00 
+$f0 - $f1                 store   field                              22 17 
+$f2 - $f3                 store   field1                             22 18 
+$f4 - $f5                 store   field2                             22 19 
+$f6 - $f7                 store   moves                              22 1a 
+$f8 - $f9                 jump    disp_field                         11 1e 
+
+Labels:
+
+prc_move   $95
+piece_data $0e
+disp_field $1e
+printx_ret $e8
+rst_field  $ee
+winc_diag  $74
+on_tie     $da
+prc_invp   $8e
+on_win     $d6
+disp_col   $34
+t3_temp    $1d
+player     $0d
+on_end     $dc
+dispf_loop $26
+dispc_loop $31
+t2_temp    $1c
+printx_jmp $e7
+tie_msg    $02
+winc_loop  $5e
+tie_check  $88
+printx_msg $e3
+field1     $18
+win_msg    $06
+winc_0     $5c
+field      $17
+moves      $1a
+rst_wait   $ed
+t1_temp    $1b
+prcm_str   $d3
+prcm_loop  $b7
+field2     $19
+win_check  $4c
+printx     $e2
+prcm_inp   $9f
+board_div  $11
+
+Program length: 250 / 256 bytes (97.65625% of maximum size)
