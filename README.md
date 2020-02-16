@@ -1,6 +1,6 @@
 # GR8CPU-Rev2
 
-My second CPU project, orderable as a kit!
+My second CPU project, mmmmaaayyybe orderable as a kit!
 
 The instruction set ROMs are in the folder "IS"<br>
 The programs along with the exported files are in the folder "programs"<br>
@@ -12,6 +12,12 @@ The assembler creates a folder called "data", which stores the paths.<br>
 It is recommended you keep this, but not necessary.<br>
 To start writing programs, download the repository and use assembler.jar to assemble your programs.<br>
 I also made a guide on how to create programs in [assembler.md](../master/assembler.md)
+
+---
+
+About liscensing:<br>
+I don't care.<br>
+Just credit me. or not.
 
 ---
 
@@ -34,7 +40,8 @@ Current Status:
 
 Logical design: Final.<br>
 Instruction set: Final.<br>
-Assembler: Finishing.
+Assembler: Finishing.<br>
+Breadboard version: Finished, maybe not final.
 
 Modules:
 
@@ -55,7 +62,7 @@ Things to order:
 
 ---
 
-Bill of materials so far (as requested):
+Bill of materials so far (out of date):
 
 1x    Arduino nano (for programming, the one that emulates a clock for now doesn't count)<br>
 1x    Alliance AS6C1098-55PCN 128K memory IC<br>
