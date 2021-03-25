@@ -1,3 +1,10 @@
+# please note
+
+If you're looking for [he CPU that runs GR8NIX](https://robot.scheffers.net/project/gr8nix), this is not the repository you're looking for.
+It is [this repository](https://github.com/robotman2412/thecpuproject) you're looking for
+
+There will not be any more activity here as this project is finished, just not entirely posted online.
+
 # GR8CPU-Rev2
 
 My second CPU project, mmmmaaayyybe orderable as a kit!
@@ -12,12 +19,6 @@ The assembler creates a folder called "data", which stores the paths.<br>
 It is recommended you keep this, but not necessary.<br>
 To start writing programs, download the repository and use assembler.jar to assemble your programs.<br>
 I also made a guide on how to create programs in [assembler.md](../master/assembler.md)
-
----
-
-About liscensing:<br>
-I don't care.<br>
-Just credit me. or not.
 
 ---
 
