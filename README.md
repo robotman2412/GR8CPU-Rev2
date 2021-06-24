@@ -1,6 +1,6 @@
 # please note
 
-If you're looking for [he CPU that runs GR8NIX](https://robot.scheffers.net/project/gr8nix), this is not the repository you're looking for.
+If you're looking for [the CPU that runs GR8NIX](https://robot.scheffers.net/project/gr8nix), this is not the repository you're looking for.
 It is [this repository](https://github.com/robotman2412/thecpuproject) you're looking for
 
 There will not be any more activity here as this project is finished, just not entirely posted online.
